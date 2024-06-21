@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Horizontal LinearLayout for Order Food and Order Drink buttons -->
+    <LinearLayout
+        android:id="@+id/linearButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <!-- Button to order food -->
+        <Button
+            android:id="@+id/buttonOrderFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order Food"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Button to order drink -->
+        <Button
+            android:id="@+id/buttonOrderDrink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order Drink"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <!-- List of chosen foods -->
+    <ListView
+        android:id="@+id/listViewChosenFoods"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearButtons"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:clipToPadding="false" />
+
+    <!-- Back button -->
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back to Main"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp" />
+
+</RelativeLayout>
