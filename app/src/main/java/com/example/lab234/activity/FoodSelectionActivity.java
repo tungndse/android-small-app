@@ -9,8 +9,8 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.lab234.adapter.FoodAdapter;
 import com.example.lab234.R;
+import com.example.lab234.adapter.FoodAdapter;
 import com.example.lab234.model.Food;
 
 import java.util.ArrayList;
@@ -34,10 +34,9 @@ public class FoodSelectionActivity extends AppCompatActivity {
         foodList.add(new Food("Mi Quang", R.drawable.miquang_img));
         foodList.add(new Food("Hu Tiu Sai Gon", R.drawable.hutiusaigon_img));
 
-        FoodAdapter adapter = new FoodAdapter(this, foodList);
+        FoodAdapter adapter = new FoodAdapter(this, foodList, false); // Pass false to hide delete button
         listView.setAdapter(adapter);
 
-        // Set item click listener
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -51,6 +50,3 @@ public class FoodSelectionActivity extends AppCompatActivity {
         });
     }
 }
-
-
-

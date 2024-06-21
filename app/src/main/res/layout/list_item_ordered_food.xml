@@ -21,4 +21,10 @@
         android:text="Food Name"
         android:textSize="18sp"
         android:textColor="@android:color/black" />
+
+    <Button
+        android:id="@+id/buttonDeleteFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete" />
 </LinearLayout>
