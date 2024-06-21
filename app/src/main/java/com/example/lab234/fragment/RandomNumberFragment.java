@@ -1,9 +1,8 @@
-package com.example.lab234;
+package com.example.lab234.fragment;
 
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import java.util.Random;
+
+import com.example.lab234.R;
 
 public class RandomNumberFragment extends Fragment {
 
@@ -22,6 +23,9 @@ public class RandomNumberFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_random_number, container, false);
+
+        Button buttonBack = view.findViewById(R.id.buttonBack);
+        buttonBack.setOnClickListener(v -> getParentFragmentManager().popBackStack());
 
         etMin = view.findViewById(R.id.et_min);
         etMax = view.findViewById(R.id.et_max);
@@ -38,6 +42,7 @@ public class RandomNumberFragment extends Fragment {
                     tvResult.setText(String.valueOf(randomNumber));
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
+                    tvResult.setText("Invalid input");
                 }
             }
         });
@@ -50,4 +55,5 @@ public class RandomNumberFragment extends Fragment {
         return random.nextInt(max - min + 1) + min;
     }
 }
+
 

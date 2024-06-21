@@ -1,12 +1,16 @@
-package com.example.lab234;
+package com.example.lab234.fragment;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.fragment.app.Fragment;
+
+import com.example.lab234.adapter.FruitAdapter;
+import com.example.lab234.R;
 import com.example.lab234.model.Fruit;
 
 import java.util.ArrayList;
@@ -24,6 +28,9 @@ public class FruitListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fruit_list, container, false);
+
+        Button buttonBack = view.findViewById(R.id.buttonBack);
+        buttonBack.setOnClickListener(v -> getParentFragmentManager().popBackStack());
 
         // Initialize fruit data
         fruitList = new ArrayList<>();
@@ -47,4 +54,5 @@ public class FruitListFragment extends Fragment {
         fruitList.add(new Fruit("Watermelon", R.drawable.watermelon_image, "Refreshing and hydrating"));
     }
 }
+
 

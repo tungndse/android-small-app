@@ -1,16 +1,17 @@
-package com.example.lab234;
+package com.example.lab234.fragment;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+
+import com.example.lab234.R;
 
 public class CalculatorFragment extends Fragment {
 
@@ -24,13 +25,20 @@ public class CalculatorFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calculator, container, false);
 
+        Button buttonBack = view.findViewById(R.id.buttonBack);
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getParentFragmentManager().popBackStack();
+            }
+        });
+
         etNumber1 = view.findViewById(R.id.et_number1);
         etNumber2 = view.findViewById(R.id.et_number2);
         radioGroup = view.findViewById(R.id.radioGroup);
         btnCalculate = view.findViewById(R.id.btn_calculate);
         tvResult = view.findViewById(R.id.tv_result);
 
-        // Inside btnCalculate.setOnClickListener
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,12 +67,11 @@ public class CalculatorFragment extends Fragment {
                     tvResult.setText(String.valueOf(result));
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
+                    tvResult.setText("Invalid input");
                 }
             }
         });
 
-
         return view;
     }
 }
-
