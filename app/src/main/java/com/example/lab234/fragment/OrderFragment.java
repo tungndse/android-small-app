@@ -22,13 +22,14 @@ import com.example.lab234.model.Food;
 
 import java.util.ArrayList;
 
+/** @noinspection deprecation*/
 public class OrderFragment extends Fragment {
 
     private ArrayList<Food> chosenFoods;
     private FoodAdapter chosenFoodsAdapter;
     private ListView listViewChosenFoods;
     private static final int REQUEST_CODE_FOOD_SELECTION = 100;
-    private static final int REQUEST_CODE_DRINK_SELECTION = 90;
+    //private static final int REQUEST_CODE_DRINK_SELECTION = 90;
 
     public OrderFragment() {
         // Required empty public constructor
@@ -86,7 +87,7 @@ public class OrderFragment extends Fragment {
         if (requestCode == REQUEST_CODE_FOOD_SELECTION && resultCode == Activity.RESULT_OK) {
             if (data != null) {
                 Food selectedFood = data.getParcelableExtra("selected_food");
-                // Handle selectedFood (e.g., add it to chosenFoods list and update adapter)
+                // Handle selectedFood (add it to chosenFoods list and update adapter)
                 chosenFoods.add(selectedFood);
                 chosenFoodsAdapter.notifyDataSetChanged();
             }
