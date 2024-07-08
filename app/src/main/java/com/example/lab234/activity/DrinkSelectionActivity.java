@@ -27,24 +27,23 @@ public class DrinkSelectionActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.listViewFood);
 
-        // Initialize food list with sample data
+        // Initialize drink list with sample data
         drinkList = new ArrayList<>();
-        drinkList.add(new Food("Coca", R.drawable.coca_img));
+        drinkList.add(new Food("Coca Cola", R.drawable.coca_img));
         drinkList.add(new Food("Heineken", R.drawable.heineken_img));
         drinkList.add(new Food("Tiger", R.drawable.tiger_img));
         drinkList.add(new Food("Saigon Red", R.drawable.saigonred_img));
 
-        FoodAdapter adapter = new FoodAdapter(this, drinkList);
+        FoodAdapter adapter = new FoodAdapter(this, drinkList, false); // Pass false to hide delete button
         listView.setAdapter(adapter);
 
-        // Set item click listener
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Food selectedFood = drinkList.get(position);
-                // Return to OrderFragment with selectedFood
+                Food selectedDrink = drinkList.get(position);
+                // Return to OrderFragment with selectedDrink
                 Intent intent = new Intent();
-                intent.putExtra("selected_food", selectedFood);
+                intent.putExtra("selected_food", selectedDrink);
                 setResult(Activity.RESULT_OK, intent);
                 finish();
             }

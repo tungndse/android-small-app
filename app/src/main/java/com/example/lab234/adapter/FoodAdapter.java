@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,17 +18,20 @@ public class FoodAdapter extends ArrayAdapter<Food> {
 
     private Context context;
     private ArrayList<Food> foods;
+    private boolean showDeleteButton;
 
-    public FoodAdapter(Context context, ArrayList<Food> foods) {
+    public FoodAdapter(Context context, ArrayList<Food> foods, boolean showDeleteButton) {
         super(context, 0, foods);
         this.context = context;
         this.foods = foods;
+        this.showDeleteButton = showDeleteButton;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.list_item_food, parent, false);
+            int layoutId = showDeleteButton ? R.layout.list_item_ordered_food : R.layout.list_item_food;
+            convertView = LayoutInflater.from(context).inflate(layoutId, parent, false);
         }
 
         Food currentFood = getItem(position);
@@ -40,7 +44,19 @@ public class FoodAdapter extends ArrayAdapter<Food> {
             textViewFoodName.setText(currentFood.getName());
         }
 
+        if (showDeleteButton) {
+            Button buttonDeleteFood = convertView.findViewById(R.id.buttonDeleteFood);
+            buttonDeleteFood.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    foods.remove(position);
+                    notifyDataSetChanged();
+                }
+            });
+        }
+
         return convertView;
     }
 }
+
 

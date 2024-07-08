@@ -1,9 +1,9 @@
 package com.example.lab234.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -14,10 +14,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.lab234.activity.DrinkSelectionActivity;
-import com.example.lab234.adapter.FoodAdapter;
-import com.example.lab234.activity.FoodSelectionActivity;
 import com.example.lab234.R;
+import com.example.lab234.activity.DrinkSelectionActivity;
+import com.example.lab234.activity.FoodSelectionActivity;
+import com.example.lab234.adapter.FoodAdapter;
 import com.example.lab234.model.Food;
 
 import java.util.ArrayList;
@@ -48,7 +48,7 @@ public class OrderFragment extends Fragment {
 
         // Set up list and adapter
         chosenFoods = new ArrayList<>();
-        chosenFoodsAdapter = new FoodAdapter(getActivity(), chosenFoods);
+        chosenFoodsAdapter = new FoodAdapter(getActivity(), chosenFoods, true); // Pass true to show delete button
         listViewChosenFoods.setAdapter(chosenFoodsAdapter);
 
         // Button click listeners
@@ -64,7 +64,7 @@ public class OrderFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), DrinkSelectionActivity.class);
-                startActivityForResult(intent, REQUEST_CODE_FOOD_SELECTION);
+                startActivityForResult(intent, REQUEST_CODE_DRINK_SELECTION);
             }
         });
 
@@ -83,12 +83,21 @@ public class OrderFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_CODE_FOOD_SELECTION && resultCode == Activity.RESULT_OK) {
+        if (resultCode == getActivity().RESULT_OK) {
             if (data != null) {
-                Food selectedFood = data.getParcelableExtra("selected_food");
-                // Handle selectedFood (e.g., add it to chosenFoods list and update adapter)
-                chosenFoods.add(selectedFood);
-                chosenFoodsAdapter.notifyDataSetChanged();
+                if (requestCode == REQUEST_CODE_FOOD_SELECTION) {
+                    Food selectedFood = data.getParcelableExtra("selected_food");
+                    if (selectedFood != null) {
+                        chosenFoods.add(selectedFood);
+                        chosenFoodsAdapter.notifyDataSetChanged();
+                    }
+                } else if (requestCode == REQUEST_CODE_DRINK_SELECTION) {
+                    Food selectedDrink = data.getParcelableExtra("selected_food");
+                    if (selectedDrink != null) {
+                        chosenFoods.add(selectedDrink);
+                        chosenFoodsAdapter.notifyDataSetChanged();
+                    }
+                }
             }
         }
     }
