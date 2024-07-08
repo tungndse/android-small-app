@@ -1,66 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- FrameLayout to hold fragments -->
-    <FrameLayout
-        android:id="@+id/fragmentContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <!-- Title TextView -->
+    <TextView
+        android:id="@+id/mainTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Labs Management"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp" />
 
-    <!-- Vertical LinearLayout for buttons -->
+    <!-- Container for buttons -->
     <LinearLayout
         android:id="@+id/buttonContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerInParent="true">
+        android:orientation="vertical">
 
-        <!-- Buttons to open fragments -->
         <Button
             android:id="@+id/buttonCalculator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Calculator" />
+            android:text="Lab 2: Calculator"
+            android:gravity="start|center_vertical" />
 
         <Button
             android:id="@+id/buttonRandomNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Random Number" />
+            android:text="Lab 2: Random Number"
+            android:gravity="start|center_vertical" />
 
         <Button
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login" />
+            android:text="Lab 2: Login"
+            android:gravity="start|center_vertical" />
 
         <Button
             android:id="@+id/buttonRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register" />
+            android:text="Lab 2: Register"
+            android:gravity="start|center_vertical" />
 
         <Button
             android:id="@+id/buttonListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="List View String" />
+            android:text="Lab 3: List View"
+            android:gravity="start|center_vertical" />
 
         <Button
             android:id="@+id/buttonFruitList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="List of Fruit" />
+            android:text="Lab 3: Fruit List"
+            android:gravity="start|center_vertical" />
 
         <Button
             android:id="@+id/buttonOrderFoodDrink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Order Food and Drink" />
-
+            android:text="Lab 4: Order Food/Drink"
+            android:gravity="start|center_vertical" />
     </LinearLayout>
 
-</RelativeLayout>
+    <!-- Exit Button -->
+    <Button
+        android:id="@+id/buttonExit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Exit"
+        android:gravity="center"
+
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="exitApp" />
+
+    <!-- Container for fragments -->
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+</LinearLayout>
